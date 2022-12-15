@@ -1,0 +1,10 @@
+.link, 
+.link:hover {
+    color: white;
+    padding: 0 20px;
+}
+
+.cabecalho {
+    background-color: #0042be;
+    padding: 10px 0;
+}
