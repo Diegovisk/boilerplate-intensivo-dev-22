@@ -1,4 +1,4 @@
-function Card(){
+function Card(prop){
     return (
       <div className="card mb-5">
         <img

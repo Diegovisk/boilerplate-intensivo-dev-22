@@ -2,29 +2,19 @@ import './App.css'
 
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
-import Card from "./components/Card/Card";
+import ItemList from "./components/ItemList/ItemList"
+import Cadastro from "./components/Cadastro/Cadastro"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   return (
     <div className="App">
       <Header />
 
-      <div className="content container mb-3 mt-3">
-        <div className="row">
-          <div className="col-4">
-            <Card />
-          </div>
-          <div className="col-4">
-            <Card />
-          </div>
-          <div className="col-4">
-            <Card />
-          </div>
-          <div className="col-4">
-            <Card />
-          </div>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<ItemList />}></Route>
+        <Route path="/cadastro" element={<Cadastro />}></Route>
+      </Routes>
 
       <Footer />
     </div>
