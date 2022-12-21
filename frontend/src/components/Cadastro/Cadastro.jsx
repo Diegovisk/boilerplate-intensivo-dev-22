@@ -22,9 +22,38 @@ function Cadastro(){
 
     // Pegar as categorias
     // Cadastrar na variável de estado
+    async function cadastraItem(event) {
+      event.preventDefault()
+
+      const formEl = event.target;
+      
+      formEl.submit.disabled = true;
+
+      // criar o "body" da requisição
+      const body = {
+        name: formEl.nome.value,
+        imageUrl: formEl.url.value,
+        category: formEl.categoria.value,
+      }; 
+
+      const request = await API.item.create(body);
+      console.log(request)
+      formEl.submit.disabled = false;
+
+      if (request.status == 201) {
+        // deu certo
+        alert("Item cadastrado com sucesso!!")
+        formEl.nome.value = ""
+        formEl.url.value = ""
+      } else {
+        // aconteceu algo!
+        alert("Aconteceu algo, seu item NÃO foi cadastrado. :(")
+      }
+
+    }
 
     return (
-      <form className="container">
+      <form className="container" onSubmit={cadastraItem}>
         <h1>Cadastro de Items</h1>
         <div className="form-group mt-2">
           <label>Nome:</label>
@@ -40,12 +69,12 @@ function Cadastro(){
           <label>Categoria:</label>
           <select className="form-control" name="categoria">
             {categorias.map(
-                el => <option key={el._id}>{el.name}</option>
+                el => <option key={el._id} value={el._id}>{el.name}</option>
             )}
           </select>
         </div>
         <div className="form-group mt-3">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" name="submit" className="btn btn-primary">
             Cadastrar
           </button>
         </div>
